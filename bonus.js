@@ -230,9 +230,9 @@ class Cart {
                 return console.log('YOUR RECIPE: ' + '\n\n' + index + 1 + '. ' + element + ' - ' + this.#price + '\n')
             }
             if(index < this.#movies.length - 1) {
-                return console.log(index + 1 + '. ' + element + ' - ' + this.#price + '\n')
+                return console.log((index < 10 ? '0' : '') + (index + 1) + '. ' + element + ' - ' + this.#price + '\n')
             }
-            return console.log(index + 1 + '. ' + element + ' - ' + this.#price + '\n\n' + 'TOTAL: ' + this.getTotalPrice())
+            return console.log((index < 10 ? '0' : '') + (index + 1) + '. ' + element + ' - ' + this.#price + '\n\n' + 'TOTAL: ' + this.getTotalPrice())
             
         })
     }
@@ -243,6 +243,7 @@ const cart = new Cart();
 cart.addMovie("Harry Potter e la Pietra Filosofale");
 cart.addMovie("Godzilla vs. Kong");
 cart.addMovie("Interstellar");
+cart.addMovie("Red, White & Royal Blue");
 cart.removeMovie("Godzilla vs. Kong")
 
 
