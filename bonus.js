@@ -226,10 +226,13 @@ class Cart {
     }
     getRecipe() {
         this.#movies.forEach((element, index) => {
-            if(index < this.#movies.length - 1) {
-                return console.log(element + ' - ' + this.#price + '\n')
+            if(index === 0) {
+                return console.log('YOUR RECIPE: ' + '\n\n' + index + 1 + '. ' + element + ' - ' + this.#price + '\n')
             }
-            return console.log(element + ' - ' + this.#price + '\n' + 'TOTAL: ' + this.getTotalPrice())
+            if(index < this.#movies.length - 1) {
+                return console.log(index + 1 + '. ' + element + ' - ' + this.#price + '\n')
+            }
+            return console.log(index + 1 + '. ' + element + ' - ' + this.#price + '\n\n' + 'TOTAL: ' + this.getTotalPrice())
             
         })
     }
