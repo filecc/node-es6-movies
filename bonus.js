@@ -103,6 +103,22 @@ class Movie {
     get rating() {
         return this.#rating;
     }
+    set name(name) {
+        this.#name = name;
+    }
+    set type(type) {
+        this.#type = type;
+    }
+    set year(year) {
+        this.#year = year;
+    }
+    set genre(genre) {
+        this.#genre = genre;
+    }
+    set rating(rating) {
+        this.#rating = rating;
+    }
+   
 }
 
 /* Creare una classe TvSeries che estenda la classe Movie e ne aggiunta la proprietà seasons. */
@@ -118,6 +134,9 @@ class TvSeries extends Movie {
     }
     get seasons() {
         return this.#seasons;
+    }
+    set seasons(seasons) {
+        this.#seasons = seasons;
     }
 }
 
@@ -177,26 +196,39 @@ const getFilteredByGenre = (genre) => {
     return list.filter((element) => element);
 }
 
+/* Creare una classe Cart dove poter salvare i film che si intende noleggiare. Tramite delle funzioni, poter aggiungere o togliere dei film dal carrello. Creare poi una funzione che stampi il costo totale dei film da noleggiare, dove per ogni film occorre specificare un prezzo fisso di 3.99 */
 class Cart {
-    #title;
-    #price;
-
-    constructor(title) {
-        this.#title = title;
-        this.#price = 3.99;
+    #movies;
+    constructor() {
+        this.#movies = [];
     }
-
-    get title() {
-        return this.#title;
+    addMovie(movie) {
+        const available = newElements.find((element) => element.name === movie);
+        if(!available) {
+            return console.log(`${movie} non è disponibile per l'acquisto.`)
+        } else {
+            this.#movies.push(movie);
+        }
+        
     }
-    get price() {    
-        return this.#price;
+    removeMovie(movie) {
+        const index = this.#movies.indexOf(movie);
+        if(index !== -1) {
+            this.#movies.splice(index, 1);
+        } else {
+            return console.log(`${movie} non è presente nel carrello.`)
+        }
     }
-    set title(title) {
-        this.#title = title;
+    getTotalPrice() {
+        return this.#movies.length * 3.99;
     }
 }
 
+const cart = new Cart();
+cart.addMovie("Harry Potter e la Pietra Filosofale");
+cart.addMovie("Godzilla vs. Kong");
+cart.addMovie("Interstellar");
+cart.removeMovie("Godzilla vs. Kong")
 
 
 
@@ -206,3 +238,4 @@ class Cart {
 console.log(getAverageRating("tv", "Fantasy"))
 console.log(getGenreList())
 console.log(getFilteredByGenre("Fantascienza"))
+console.log(cart.getTotalPrice())
