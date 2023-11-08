@@ -1,4 +1,5 @@
 /* 
+BONUS Rendere le proprietà delle classi private e creare dei setter e dei getter per potervi accedere.
 */
 const elements = [
     {
@@ -175,6 +176,29 @@ const getFilteredByGenre = (genre) => {
     })
     return list.filter((element) => element);
 }
+
+class Cart {
+    #title;
+    #price;
+
+    constructor(title) {
+        this.#title = title;
+        this.#price = 3.99;
+    }
+
+    get title() {
+        return this.#title;
+    }
+    get price() {    
+        return this.#price;
+    }
+    set title(title) {
+        this.#title = title;
+    }
+}
+
+
+
 
 /* Eseguire tutto il codice da terminale tramite NodeJs e stampiamo nel terminale il risultato delle varie funzioni. */
 
