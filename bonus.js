@@ -199,7 +199,9 @@ const getFilteredByGenre = (genre) => {
 /* Creare una classe Cart dove poter salvare i film che si intende noleggiare. Tramite delle funzioni, poter aggiungere o togliere dei film dal carrello. Creare poi una funzione che stampi il costo totale dei film da noleggiare, dove per ogni film occorre specificare un prezzo fisso di 3.99 */
 class Cart {
     #movies;
+    #price;
     constructor() {
+        this.#price = 3.99;
         this.#movies = [];
     }
     addMovie(movie) {
@@ -220,8 +222,18 @@ class Cart {
         }
     }
     getTotalPrice() {
-        return this.#movies.length * 3.99;
+        return this.#movies.length * this.#price;
     }
+    getRecipe() {
+        this.#movies.forEach((element, index) => {
+            if(index < this.#movies.length - 1) {
+                return console.log(element + ' - ' + this.#price + '\n')
+            }
+            return console.log(element + ' - ' + this.#price + '\n' + 'TOTAL: ' + this.getTotalPrice())
+            
+        })
+    }
+
 }
 
 const cart = new Cart();
@@ -239,3 +251,4 @@ console.log(getAverageRating("tv", "Fantasy"))
 console.log(getGenreList())
 console.log(getFilteredByGenre("Fantascienza"))
 console.log(cart.getTotalPrice())
+cart.getRecipe()
